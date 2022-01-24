@@ -79,7 +79,7 @@ with recommandation_movie :
 			if pd.isnull(recommandation2(movie).iloc[1,4]):
 				st.write(recommandation2(movie))
 			elif pd.notnull(recommandation2(movie).iloc[1,4]):
-				st.image(recommandation2(movie).iloc[1,4], width=300)
+				#st.image(recommandation2(movie).iloc[1,4], width=300)
 				st.write(recommandation2(movie))
 		else:
 			st.write(recommandation2(movie))
@@ -96,7 +96,7 @@ with recommandation_movie :
 
 
 	if (len(index)>=1) and pd.notnull(index_recommandation(index).iloc[1,4]):
-		st.image(index_recommandation(index).iloc[1,4], width=300)
+		#st.image(index_recommandation(index).iloc[1,4], width=300)
 		st.write(index_recommandation(index))
 	elif len(index)>=1: 
 		st.write(index_recommandation(index))
