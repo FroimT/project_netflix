@@ -62,7 +62,7 @@ with recommandation_movie :
 			if df_scaled[df_scaled['title'].str.contains(movie)].shape[0] > 1:
 				st.write("Plusieurs films contiennent ce nom, choisissez un index parmis l'un d'eux : ")
 				multiple_index = df_knn[df_knn['title'].str.contains(movie)]
-				return multiple_index[['title', 'averageRating', 'decade', 'primaryName', 'genres', 'poster_url']]
+				return multiple_index[['title', 'averageRating', 'decade', 'primaryName', 'genres']]#, 'poster_url']]
 
 			else:
 				model_film = NearestNeighbors(metric = 'wminkowski', n_neighbors=10, metric_params = {"w": weights}).fit(X_scaled)
