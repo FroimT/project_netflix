@@ -67,7 +67,7 @@ with recommandation_movie :
 			else:
 				model_film = NearestNeighbors(metric = 'wminkowski', n_neighbors=10, metric_params = {"w": weights}).fit(X_scaled)
 				index_reco = model_film.kneighbors(df_scaled.loc[df_scaled['title'].str.contains(movie), X.columns])        
-				recommended_movie = df_knn.iloc[df_knn.index.searchsorted(index_reco[1][0][0:9])]
+				recommended_movie = df_knn.iloc[df_knn.index.searchsorted(index_reco[1][0][1:9])]
 				return recommended_movie[['title', 'averageRating', 'decade', 'primaryName', 'genres']]#, 'poster_url']]
 		except ValueError:
 			st.warning("Le film choisi n'est pas dans notre base de données, certainement pas assez bien noté ..!")
@@ -91,7 +91,7 @@ with recommandation_movie :
 	def index_recommandation(index):
 			model_film = NearestNeighbors(metric = 'wminkowski', n_neighbors=10, metric_params = {"w": weights}).fit(X_scaled)
 			index_reco_2 = model_film.kneighbors(df_scaled.loc[df_scaled.index.isin([index]), X.columns])        
-			recommended_movie_2 = df_knn.iloc[df_knn.index.searchsorted(index_reco_2[1][0][0:9])]
+			recommended_movie_2 = df_knn.iloc[df_knn.index.searchsorted(index_reco_2[1][0][1:9])]
 			return recommended_movie_2[['title', 'averageRating', 'decade', 'primaryName', 'genres']]#, 'poster_url']]
 
 
