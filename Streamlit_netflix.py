@@ -76,10 +76,10 @@ with recommandation_movie :
 			
 	try:
 		if (df_scaled[df_scaled['title'].str.contains(movie)].shape[0] > 1) is False:	
-			if pd.isnull(recommandation2(movie).iloc[1,5]):
+			if pd.isnull(recommandation2(movie).iloc[1,4]):
 				st.write(recommandation2(movie))
-			elif pd.notnull(recommandation2(movie).iloc[1,5]):
-				st.image(recommandation2(movie).iloc[1,5], width=300)
+			elif pd.notnull(recommandation2(movie).iloc[1,4]):
+				st.image(recommandation2(movie).iloc[1,4], width=300)
 				st.write(recommandation2(movie))
 		else:
 			st.write(recommandation2(movie))
@@ -95,8 +95,8 @@ with recommandation_movie :
 			return recommended_movie_2[['title', 'averageRating', 'decade', 'primaryName', 'genres']]#, 'poster_url']]
 
 
-	if (len(index)>=1) and pd.notnull(index_recommandation(index).iloc[1,5]):
-		st.image(index_recommandation(index).iloc[1,5], width=300)
+	if (len(index)>=1) and pd.notnull(index_recommandation(index).iloc[1,4]):
+		st.image(index_recommandation(index).iloc[1,4], width=300)
 		st.write(index_recommandation(index))
 	elif len(index)>=1: 
 		st.write(index_recommandation(index))
