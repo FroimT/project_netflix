@@ -51,7 +51,7 @@ with recommandation_movie :
 	X_scaled = scaler.transform(X)
 	df_scaled = pd.DataFrame(data = X_scaled, columns = X.columns, index = X.index)
 	df_scaled.insert(0, column = 'title', value = df_knn['title'])
-	df_scaled.insert(1, column = 'url', value = df_knn['poster_url'])
+	#df_scaled.insert(1, column = 'url', value = df_knn['poster_url'])
 	df_scaled.insert(2, column = 'genres', value = df_knn['genres'])
 	df_scaled.insert(3, column = 'réalisateur', value = df_knn['primaryName'])
 	weights = pd.Series(np.array([3, 1, 2.5, 2.5, 2.5,2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]), index = X.columns)
@@ -68,7 +68,7 @@ with recommandation_movie :
 				model_film = NearestNeighbors(metric = 'wminkowski', n_neighbors=10, metric_params = {"w": weights}).fit(X_scaled)
 				index_reco = model_film.kneighbors(df_scaled.loc[df_scaled['title'].str.contains(movie), X.columns])        
 				recommended_movie = df_knn.iloc[df_knn.index.searchsorted(index_reco[1][0][0:9])]
-				return recommended_movie[['title', 'averageRating', 'decade', 'primaryName', 'genres', 'poster_url']]
+				return recommended_movie[['title', 'averageRating', 'decade', 'primaryName', 'genres']]#, 'poster_url']]
 		except ValueError:
 			st.warning("Le film choisi n'est pas dans notre base de données, certainement pas assez bien noté ..!")
 		except AttributeError:
